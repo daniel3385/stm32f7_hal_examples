@@ -7,7 +7,7 @@ LDFLAGS= -mcpu=$(MACH) -T ..\scripts\stm32f7_linker.ld -Xlinker -Map=uart_exampl
 SRCDIR=.\src
 STADIR=..\startup
 
-all:$(SRCDIR)\main.o $(SRCDIR)\uart.o $(SRCDIR)\led.o $(SRCDIR)\rcc.o $(STADIR)\stm32f7_startup.o $(STADIR)\syscalls.o uart_example.elf
+all:$(SRCDIR)\main.o $(SRCDIR)\uart.o $(SRCDIR)\led.o $(STADIR)\stm32f7_startup.o $(STADIR)\syscalls.o uart_example.elf
 
 main.o:$(SRCDIR)\main.c
 	$(CC) $(CFLAGS) -o $@ $^
@@ -18,16 +18,13 @@ uart.o:$(SRCDIR)\uart.c
 led.o:$(SRCDIR)\led.c
 	$(CC) $(CFLAGS) -o $@ $^
 
-rcc.o:$(SRCDIR)\rcc.c
-	$(CC) $(CFLAGS) -o $@ $^
-
 syscalls.o:$(STADIR)\syscalls.c
 	$(CC) $(CFLAGS) -o $@ $^
 
 stm32f7_startup.o:$(STADIR)\stm32f7_startup.c
 	$(CC) $(CFLAGS) -o $@ $^
 
-uart_example.elf:$(SRCDIR)\main.o $(SRCDIR)\uart.o $(SRCDIR)\rcc.o $(SRCDIR)\led.o $(STADIR)\stm32f7_startup.o $(STADIR)\syscalls.o
+uart_example.elf:$(SRCDIR)\main.o $(SRCDIR)\uart.o $(SRCDIR)\led.o $(STADIR)\stm32f7_startup.o $(STADIR)\syscalls.o
 	$(CC) $(LDFLAGS) -o $@ $^
 
 clean:
