@@ -1,10 +1,3 @@
-/*
- * led.h
- *
- *  Created on: May 12, 2021
- *      Author: Israel
- */
-
 #ifndef LED_H_
 #define LED_H_
 
