@@ -15,6 +15,10 @@ extern uint32_t _ebss;
 
 extern int main(void);
 
+#ifdef __LIBNANO__
+extern void __libc_init_array(void);
+#endif
+
 /* function prototypes of STM32F767x system exception and IRQ handlers */
 
 void Reset_Handler(void);
@@ -278,6 +282,8 @@ void Reset_Handler(void)
 	/* Copy .data section to SRAM */
 	uint32_t len = (uint32_t)&_edata - (uint32_t)&_sdata;
 
+	//__BKPT();
+
 	uint8_t *dst = (uint8_t *)&_sdata;
 	uint8_t *src = (uint8_t *)&_etext;
 
@@ -290,6 +296,11 @@ void Reset_Handler(void)
     for (uint32_t *bss_ptr = &_sbss; bss_ptr < &_ebss;) {
         *bss_ptr++ = 0;
     }
+
+	#ifdef __LIBNANO__
+	/* Initialization function for Newlib-nano */
+	__libc_init_array();
+	#endif
 
 	/* Start up main */
 	main();

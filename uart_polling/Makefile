@@ -1,10 +1,10 @@
 CC=arm-none-eabi-gcc
 MACH=cortex-m33
-INC=-I.\inc\cmsis -I.\inc\st -I.\inc
+INC=-I..\common\cmsis -I..\common\st -I.\inc
 CFLAGS= -g3 -c -mcpu=$(MACH) -mthumb -std=gnu11 -Wall -O0 $(INC) -DSTM32F767xx --specs=nano.specs
-LDFLAGS= -mcpu=$(MACH) -T .\scripts\stm32f7_linker.ld -Xlinker -Map=uart.map --specs=nano.specs
+LDFLAGS= -mcpu=$(MACH) -T ..\common\scripts\stm32f7_linker.ld -Xlinker -Map=uart.map --specs=nano.specs
 SRCDIR=.\src
-STADIR=.\startup
+STADIR=..\common\startup
 
 all:$(SRCDIR)\main.o $(SRCDIR)\uart.o $(SRCDIR)\led.o $(STADIR)\stm32f7_startup.o $(STADIR)\syscalls.o uart.elf
 

@@ -1,10 +1,10 @@
 CC=arm-none-eabi-gcc
 MACH=cortex-m33
-INC=-I.\inc\cmsis -I.\inc\st -I.\inc
+INC=-I..\common\cmsis -I..\common\st -I.\inc
 CFLAGS= -g3 -c -mcpu=$(MACH) -mthumb -std=gnu11 -Wall -O0 $(INC) -DSTM32F767xx
-LDFLAGS= -nostdlib -T .\scripts\stm32f7_linker.ld -Xlinker -Map=timers.map
+LDFLAGS= -nostdlib -T ..\common\scripts\stm32f7_linker.ld -Xlinker -Map=timers.map
 SRCDIR=.\src
-STADIR=.\startup
+STADIR=..\common\startup
 
 all:$(SRCDIR)\main.o $(SRCDIR)\tim.o $(SRCDIR)\systick.o $(SRCDIR)\led.o $(STADIR)\stm32f7_startup.o timers.elf
 
