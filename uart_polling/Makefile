@@ -27,7 +27,7 @@ uart.elf:$(SRCDIR)\main.o $(SRCDIR)\uart.o $(SRCDIR)\led.o $(STADIR)\stm32f7_sta
 	$(CC) $(LDFLAGS) -o $@ $^
 
 clean:
-	del $(SRCDIR)\*.o $(STADIR)\*.o *.elf
+	del $(SRCDIR)\*.o $(STADIR)\*.o *.elf uart.map
 
 load:
 	openocd -f board/st_nucleo_f7.cfg

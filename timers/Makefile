@@ -27,7 +27,7 @@ timers.elf:$(SRCDIR)\main.o $(SRCDIR)\tim.o $(SRCDIR)\systick.o $(SRCDIR)\led.o 
 	$(CC) $(LDFLAGS) -o $@ $^
 
 clean:
-	del $(SRCDIR)\*.o $(STADIR)\*.o *.elf
+	del $(SRCDIR)\*.o $(STADIR)\*.o *.elf timers.map
 
 load:
 	openocd -f board/st_nucleo_f7.cfg
